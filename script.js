@@ -1,7 +1,6 @@
 // Seleccionar elementos del DOM
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('startButton');
-const resetButton = document.getElementById('resetButton');
 
 // Variables del temporizador
 let workTime = 25 * 60; // 25 minutos
@@ -18,36 +17,34 @@ function updateTimerDisplay() {
   timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
+// Función para iniciar/reiniciar el temporizador
 function startTimer() {
-    if (!isRunning) {
-      intervalId = setInterval(() => {
-        currentTime--;
-        updateTimerDisplay();
-  
-        if (currentTime === 0) {
-          if (isWorking) {
-            currentTime = breakTime;
-            isWorking = false;
-            playSound();
-          } else {
-            currentTime = workTime;
-            isWorking = true;
-            playSound();
-          }
-        }
-      }, 1000);
-    }
-  }
+  if (!isRunning) {
+    intervalId = setInterval(() => {
+      currentTime--;
+      updateTimerDisplay();
 
-// Función para pausar el temporizador
-function pauseTimer() {
-  clearInterval(intervalId);
-  isRunning = false;
-  startButton.textContent = 'Resume';
-  startButton.onclick = startTimer;
+      if (currentTime === 0) {
+        if (isWorking) {
+          currentTime = breakTime;
+          isWorking = false;
+          playSound();
+        } else {
+          currentTime = workTime;
+          isWorking = true;
+          playSound();
+        }
+      }
+    }, 1000);
+    isRunning = true;
+    startButton.textContent = 'Reset';
+    startButton.onclick = resetTimer;
+  } else {
+    resetTimer();
+  }
 }
 
-// Función para reiniciar el temporizador
+// Función para restablecer el temporizador
 function resetTimer() {
   clearInterval(intervalId);
   currentTime = workTime;
@@ -64,9 +61,8 @@ function playSound() {
   audio.play();
 }
 
-// Agregar event listeners a los botones
+// Agregar event listener al botón
 startButton.onclick = startTimer;
-resetButton.onclick = resetTimer;
 
 // Inicializar el temporizador
 updateTimerDisplay();
