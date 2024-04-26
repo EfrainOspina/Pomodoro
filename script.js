@@ -1,111 +1,72 @@
-let countdown;
-let isRunning = false;
-let isWorking = true; // Variable para alternar entre trabajo y descanso
-let workTime = 1 * 60; // 25 minutes in seconds
-let breakTime = 1 * 60; // 5 minutes in seconds
-let timeLeft = workTime; // Inicialmente establecido como tiempo de trabajo
-
+// Seleccionar elementos del DOM
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('startButton');
 const resetButton = document.getElementById('resetButton');
-const todoInput = document.getElementById('todoInput');
-const addButton = document.getElementById('addButton');
-const todoList = document.getElementById('todoList');
 
-function displayTimeLeft(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainderSeconds = seconds % 60;
-    const display = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
-    document.title = display;
-    timerDisplay.textContent = display;
+// Variables del temporizador
+let workTime = 25 * 60; // 25 minutos
+let breakTime = 5 * 60; // 5 minutos
+let currentTime = workTime;
+let isWorking = true;
+let intervalId;
+let isRunning = false;
+
+// Función para actualizar el display del temporizador
+function updateTimerDisplay() {
+  const minutes = Math.floor(currentTime / 60);
+  const seconds = currentTime % 60;
+  timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
 function startTimer() {
     if (!isRunning) {
-        isRunning = true;
-        countdown = setInterval(() => {
-            timeLeft--;
-            if (timeLeft < 0) {
-                clearInterval(countdown);
-                isRunning = false;
-                document.title = isWorking ? "¡Tiempo de descanso!" : "¡Tiempo de trabajo!";
-                if (isWorking) {
-                    timeLeft = breakTime;
-                    document.body.classList.remove('working');
-                    document.body.classList.add('break');
-                } else {
-                    timeLeft = workTime;
-                    document.body.classList.remove('break');
-                    document.body.classList.add('working');
-                }
-                isWorking = !isWorking; // Alternar entre trabajo y descanso
-                displayTimeLeft(timeLeft);
-                startTimer(); // Iniciar el siguiente temporizador automáticamente
-                return;
-            }
-            displayTimeLeft(timeLeft);
-        }, 1000);
+      intervalId = setInterval(() => {
+        currentTime--;
+        updateTimerDisplay();
+  
+        if (currentTime === 0) {
+          if (isWorking) {
+            currentTime = breakTime;
+            isWorking = false;
+            playSound();
+          } else {
+            currentTime = workTime;
+            isWorking = true;
+            playSound();
+          }
+        }
+      }, 1000);
     }
+  }
+
+// Función para pausar el temporizador
+function pauseTimer() {
+  clearInterval(intervalId);
+  isRunning = false;
+  startButton.textContent = 'Resume';
+  startButton.onclick = startTimer;
 }
 
+// Función para reiniciar el temporizador
 function resetTimer() {
-    clearInterval(countdown);
-    isRunning = false;
-    isWorking = true;
-    timeLeft = workTime;
-    document.body.classList.remove('break');
-    document.body.classList.add('working');
-    displayTimeLeft(timeLeft);
+  clearInterval(intervalId);
+  currentTime = workTime;
+  isWorking = true;
+  isRunning = false;
+  updateTimerDisplay();
+  startButton.textContent = 'Start';
+  startButton.onclick = startTimer;
 }
 
-function addTodo() {
-    const todoText = todoInput.value.trim();
-    if (todoText !== '') {
-        const li = document.createElement('li');
-        li.textContent = todoText;
-        todoList.appendChild(li);
-        todoInput.value = '';
-    }
+// Función para reproducir un sonido de alarma
+function playSound() {
+  const audio = new Audio('alarm.mp3');
+  audio.play();
 }
 
-function removeTodo(event) {
-    const item = event.target;
-    if (item.tagName === 'LI') {
-        item.remove();
-    }
-}
+// Agregar event listeners a los botones
+startButton.onclick = startTimer;
+resetButton.onclick = resetTimer;
 
-startButton.addEventListener('click', startTimer);
-resetButton.addEventListener('click', resetTimer);
-addButton.addEventListener('click', addTodo);
-todoList.addEventListener('click', removeTodo);
-
-displayTimeLeft(timeLeft); // Initial display
-
-function startTimer() {
-    if (!isRunning) {
-        isRunning = true;
-        // Cambio de color de fondo al iniciar el temporizador
-        document.body.style.backgroundColor = isWorking ? "#0066ff" : "#00cc66";
-        countdown = setInterval(() => {
-            timeLeft--;
-            if (timeLeft < 0) {
-                clearInterval(countdown);
-                isRunning = false;
-                document.title = isWorking ? "¡Tiempo de descanso!" : "¡Tiempo de trabajo!";
-                if (isWorking) {
-                    timeLeft = breakTime;
-                    document.body.style.backgroundColor = "#00cc66"; // Verde para descanso
-                } else {
-                    timeLeft = workTime;
-                    document.body.style.backgroundColor = "#0066ff"; // Azul para trabajo
-                }
-                isWorking = !isWorking; // Alternar entre trabajo y descanso
-                displayTimeLeft(timeLeft);
-                startTimer(); // Iniciar el siguiente temporizador automáticamente
-                return;
-            }
-            displayTimeLeft(timeLeft);
-        }, 1000);
-    }
-}
+// Inicializar el temporizador
+updateTimerDisplay();

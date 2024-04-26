@@ -3,7 +3,9 @@ body {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  background-color: inherit;
+  background-color: #f0fff0;
+  color: white;
+  font-family: "Roboto";
 }
 
 .container {
@@ -13,14 +15,53 @@ body {
   margin-top: 200px;
 }
 
+h1 {
+  color: black;
+}
 #timer {
-  font-size: 3em;
-  margin: 20px 0;
+  width: 25%;
+  font-size: 5rem;
+  background-color: #ff4500;
+  font-family: "Orbitron", monospace;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px 0px;
+  border-radius: 15px;
+  border: 1px solid black;
+}
+
+#fecha {
+  color: #000;
 }
 
 button {
-  font-size: 1.5em;
-  margin: 10px;
+  font-family: "Orbitron";
+  display: inline-block;
   padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff4500;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  margin: 5px 10px;
+  padding: 10px 30px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #fff;
+  color: black;
+  border: 2px solid black;
+  box-shadow: 5px 5px 0px black;
+}
+
+button:active {
+  box-shadow: none;
+  transform: translateY(4px);
 }
