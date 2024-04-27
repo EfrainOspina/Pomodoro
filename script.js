@@ -3,8 +3,8 @@ const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('startButton');
 
 // Variables del temporizador
-let workTime = 25 * 60; // 25 minutos
-let breakTime = 5 * 60; // 5 minutos
+let workTime = 0.1 * 50; // 25 minutos
+let breakTime = 0.1 * 60; // 5 minutos
 let currentTime = workTime;
 let isWorking = true;
 let intervalId;
