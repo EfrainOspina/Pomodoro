@@ -3,36 +3,45 @@ body {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  background-color: #f0fff0;
+  background-color: #e7b9b9;
   color: white;
   font-family: "Roboto";
+  overflow: hidden; /* Oculta el desplazamiento */
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 200px;
-  background-color: #ff4500;
-  width: 35%;
-  height: 600px;
-  justify-content: center;
-
+  background-color: #dd5353;
+  border-radius: 10px;
+  margin: auto;
+  min-width: 300px;
+  max-width: 400px;
+  height: 300px;
+  margin-top: 100px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
-h1 {
+.name {
+  text-align: center;
+  font-size: 4rem;
   color: black;
 }
+h1 {
+  color: white;
+}
 #timer {
-  width: 25%;
+  min-width: 300px;
   font-size: 5rem;
-  background-color: #ff4500;
   font-family: "Orbitron", monospace;
   font-weight: bold;
   text-align: center;
   padding: 12px 0px;
-  border-radius: 15px;
-  border: 1px solid black;
 }
 
 #fecha {
@@ -48,7 +57,7 @@ button {
   text-align: center;
   text-decoration: none;
   color: #fff;
-  background-color: #ff4500;
+  background-color: #dd5353;
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 5px 5px 0px #000;
@@ -69,4 +78,35 @@ button:hover {
 button:active {
   box-shadow: none;
   transform: translateY(4px);
+}
+
+.circle {
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 30vw;
+  height: 30vw;
+  background-color: #dd5353;
+  border-radius: 50%;
+  border: 10px solid #eb8080;
+}
+
+.circle_t {
+  position: absolute;
+  top: 350px;
+  left: -250px;
+  width: 40vw;
+  height: 40vw;
+  background-color: #dd5353;
+  border-radius: 50%;
+  border: 25px solid #eb8080;
+}
+
+.img_plant {
+  position: absolute;
+  top: 300px;
+  left: 180px;
+  width: 22vw;
+  height: 22vw;
+  transform: rotate(50deg);
 }

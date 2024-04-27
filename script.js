@@ -51,7 +51,7 @@ function resetTimer() {
   isWorking = true;
   isRunning = false;
   updateTimerDisplay();
-  startButton.textContent = 'Start';
+  startButton.textContent = 'Iniciar';
   startButton.onclick = startTimer;
 }
 
