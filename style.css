@@ -59,7 +59,7 @@ button {
   text-decoration: none;
   color: #fff;
   background-color: #dd5353;
-  border: 2px solid #000000b2;
+  border: 2px solid rgba(0, 0, 0, 0.67);
   border-radius: 10px;
   box-shadow: 5px 5px 0px #0000006a;
   transition: all 0.3s ease;
@@ -70,7 +70,7 @@ button {
 }
 
 button:hover {
-  background-color: #fff;
+  background-color: #ffffffba;
   color: rgba(0, 0, 0, 0.748);
   border: 2px solid black;
   box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.713);
