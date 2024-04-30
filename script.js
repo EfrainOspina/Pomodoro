@@ -3,6 +3,8 @@ const StartButton = document.getElementById('StartButton');
 const container = document.getElementById('container');
 const text = document.getElementById('text');
 
+//agrego el evento al boton
+StartButton.addEventListener("click",startTimer) 
 //VARIABLES 
 let timer;
 let time = 1 * 10  ;
@@ -30,10 +32,17 @@ function startTimer() {
         if (isWorking) {
           time = 1 * 5; //DESCANSO
           isWorking = false;
+          container.style.backgroundColor = '#5DD384';
+          text.textContent = 'Descansa';
+          StartButton.style.backgroundColor = '#5DD384';
           playSound()
         } else {
           time = 1 * 10; //TRABAJO
           isWorking = true;
+          container.style.backgroundColor = '';
+          text.textContent = '¡Enfocado y en marcha!';
+          StartButton.style.backgroundColor = '';
+
           playSound()
         }
         updateTimerDisplay();
@@ -54,8 +63,6 @@ function playSound() {
   const audio = new Audio('Utilidades/iphoneradar_bd8398fb5078630 (mp3cut.net).mp3');
   audio.play(); 
 }
-
-StartButton.addEventListener("click",startTimer) //agrego el evento al boton
 
 updateTimerDisplay(); //actualizar la visualización del temporizador 
 

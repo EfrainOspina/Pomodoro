@@ -9,7 +9,7 @@ body {
   overflow: hidden;
 }
 
-.container {
+#container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +25,6 @@ body {
   box-shadow: 5px 5px 0px #0000004d;
   transition: all 0.3s ease;
   font-size: 1rem;
-  z-index: 100; /* Para colocar el fondo detrás del contenido */
 }
 
 .name {
