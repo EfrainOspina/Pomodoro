@@ -1,76 +1,61 @@
-const timerDisplay = document.getElementById('timer');
-const startButton = document.getElementById('startButton');
-const container = document.querySelector('.container');
-const text = document.querySelector('.text');
+//ELEMENTOS LLAMADOS POR EL DOM
+const StartButton = document.getElementById('StartButton');
+const container = document.getElementById('container');
+const text = document.getElementById('text');
 
-let workTime = 0.1 * 50; // 25 minutos
-let breakTime = 0.1 * 60; // 5 minutos
-let currentTime = workTime;
+//VARIABLES 
+let timer;
+let time = 1 * 10  ;
 let isWorking = true;
-let intervalId;
 let isRunning = false;
 
-function updateTimerDisplay() {
-  const minutes = Math.floor(currentTime / 60);
-  const seconds = currentTime % 60;
-  timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-function playSound() {
-  const audio = new Audio('/Utilidades/iphoneradar_bd8398fb5078630 (mp3cut.net).mp3');
-  audio.play();
+function updateTimerDisplay() { //ACTUALIZAR EL TIEMPO
+  const minutes = Math.floor(time / 60); //CALCULAR LOS MINUTOS RESTANTES
+  const seconds = time % 60;    //CALCULAR LOS SEGUNDOS RESTANTES
+  document.getElementById('timer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;  // PARA ACUTUALIZAR LOS NUMEROES EN VEZ DE 5 SERIA 05
 }
 
+//funcion para iniciar el cronometro
 function startTimer() {
   if (!isRunning) {
-    intervalId = setInterval(() => {
-      currentTime--;
-      updateTimerDisplay();
-      if (currentTime === 0) {
-        clearInterval(intervalId);
+    isRunning = true;
+    timer = setInterval(() => {
+      if (time > 0) {
+        time--;
+        updateTimerDisplay();
+      } else {
+        clearInterval(timer);
+        isRunning = false;
+        alert(isWorking ? "Tomate un descanso" : "Es tiempo de trabajar");//quitar esta linea si no soluciono la demora del sonido
         if (isWorking) {
-          currentTime = breakTime;
+          time = 1 * 5; //DESCANSO
           isWorking = false;
-          startButton.style.backgroundColor = '#7abf85';
-          container.style.backgroundColor = '#7abf85';
-          text.textContent = "Descanso"
-          playSound();
-          setTimeout(() => {
-            startButton.style.backgroundColor = '';
-            container.style.backgroundColor = '';
-            text.textContent = "¡Enfocado y en marcha!"
-            startTimer(); 
-          }, 4000); 
+          playSound()
         } else {
-          currentTime = workTime;
+          time = 1 * 10; //TRABAJO
           isWorking = true;
-          container.style.backgroundColor = ''; 
-          startButton.style.backgroundColor = '';
-          text.textContent = "¡Enfocado y en marcha!"
-          playSound();
+          playSound()
         }
+        updateTimerDisplay();
+        StartButton.textContent = 'Iniciar'; 
       }
     }, 1000);
-    isRunning = true;
-    startButton.textContent = 'Reset';
-    startButton.onclick = resetTimer;
+    StartButton.textContent = 'Reiniciar'; 
   } else {
-    resetTimer();
+    clearInterval(timer);
+    time = isWorking ? 1 * 10 : 1* 5; // Reinicia el tiempo según el estado actual (trabajo o descanso)
+    updateTimerDisplay();
+    isRunning = false;
+    StartButton.textContent = 'Iniciar'; 
   }
 }
-function resetTimer() {
-  clearInterval(intervalId);
-  currentTime = workTime;
-  isWorking = true;
-  isRunning = false;
-  updateTimerDisplay();
-  container.style.backgroundColor = '';
-  startButton.style.backgroundColor = '';
-  startButton.textContent = 'Iniciar';
-  startButton.onclick = startTimer;
+//funcion para sonido
+function playSound() {
+  const audio = new Audio('Utilidades/iphoneradar_bd8398fb5078630 (mp3cut.net).mp3');
+  audio.play(); 
 }
 
+StartButton.addEventListener("click",startTimer) //agrego el evento al boton
 
+updateTimerDisplay(); //actualizar la visualización del temporizador 
 
-startButton.onclick = startTimer;
-
-updateTimerDisplay();

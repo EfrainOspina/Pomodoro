@@ -51,7 +51,6 @@ h1 {
 
 button {
   font-family: "Orbitron";
-  display: inline-block;
   padding: 10px 20px;
   font-size: 24px;
   font-weight: bold;
@@ -64,9 +63,14 @@ button {
   box-shadow: 5px 5px 0px #0000006a;
   transition: all 0.3s ease;
   font-size: 1rem;
-  margin: 5px 10px;
-  padding: 10px 30px;
+  margin: 15px 10px;
+  padding: 8px 30px;
   cursor: pointer;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
 }
 
 button:hover {
@@ -112,7 +116,7 @@ button:active {
   transform: rotate(50deg);
 }
 
-@media screen and (max-width: 1px) {
+@media screen and (max-width: 1199px) {
   .img_plant,
   .circle,
   .circle_t {
