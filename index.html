@@ -23,6 +23,18 @@
         </div>
     </div>
 
+    <div id="configContainer" style="display: none;">
+        <h2>Configuración del cronómetro</h2>
+        <label for="workTime">Tiempo de trabajo (minutos):</label>
+        <input type="number" id="workTime" value="25">
+        <br>
+        <label for="breakTime">Tiempo de pausa (minutos):</label>
+        <input type="number" id="breakTime" value="5">
+        <br>
+        <button id="SaveConfigButton" onclick="saveConfig()">Guardar</button>
+        <button id="CloseConfigButton" onclick="closeConfig()">Cerrar</button>
+    </div>
+
     <div class="container1">
         <h1 id="texttarea">Lista de Tareas</h1>
         <input type="text" id="taskInput" placeholder="Agregar una nueva tarea">
@@ -30,9 +42,46 @@
         <ul id="taskList"></ul>
     </div>
 
-
+    
+    <div class="tuerca_butontarea">
+        <button class="tuerca" id="ConfigButton" onclick="openConfig()">tuerca</button>
+    </div>
     <p id="cycleCountDisplay"></p>
     <script src="script.js"></script>
+    <script>
+        function openConfig() {
+            document.getElementById("configContainer").style.display = "block";
+        }
+
+        function closeConfig() {
+            document.getElementById("configContainer").style.display = "none";
+        }
+
+        function saveConfig() {
+            let workTime = document.getElementById("workTime").value;
+            let breakTime = document.getElementById("breakTime").value;
+
+            localStorage.setItem("workTime", workTime);
+            localStorage.setItem("breakTime", breakTime);
+
+            closeConfig();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let workTime = localStorage.getItem("workTime");
+            let breakTime = localStorage.getItem("breakTime");
+
+            if (workTime) {
+                document.getElementById("workTime").value = workTime;
+            }
+
+            if (breakTime) {
+                document.getElementById("breakTime").value = breakTime;
+            }
+        });
+
+        document.getElementById("CloseConfigButton").addEventListener("click", closeConfig);
+    </script>
 
 </body>
 
