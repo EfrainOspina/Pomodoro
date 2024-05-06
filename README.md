@@ -14,7 +14,6 @@ Este es un simple reloj Pomodoro desarrollado en HTML, CSS, JavaScript. El reloj
 1. **Configuración:** Antes de comenzar, asegúrate de configurar la duración de los intervalos de trabajo y descanso según tus preferencias.
 2. **Inicio del temporizador:** Haz clic en el botón "Iniciar" para comenzar el temporizador.
 3. **Notificaciones:** Presta atención a las notificaciones al finalizar cada intervalo para saber cuándo cambiar entre trabajo y pausa.
-4. **Registro:** El tiempo dedicado a trabajar y descansar se registrará automáticamente para su posterior referencia.
 
 ## 🛠️ Tecnologías Utilizadas
 

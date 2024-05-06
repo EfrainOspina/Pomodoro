@@ -1,27 +1,39 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pomodoro</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/7538/7538407.png">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-        <link href='https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
-    </head>
-    <body>
-        <h1 class="name">Cronómetro Pomodoro</h1>
-        <div id="container">
-            <h1 id="text">¡Enfocado y en marcha!</h1>
-            <div id="timer">25:00</div>
-            <div class="buttons">
-            <button id="StartButton">Iniciar</button>
-            </div>
-        </div>
-        <div class="circle"> </div>
-        <div class="circle_t"></div>
-        <img class="img_plant" src="/Utilidades/pngegg-removebg-preview.png" alt="">
-        <script src="script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-    </body>
-    </html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/7538/7538407.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+    <h1 class="name">Cronómetro Pomodoro</h1>
+
+    <div id="container">
+        <h1 id="text">¡Enfocado!</h1>
+        <div id="timer"></div>
+        <div class="buttons">
+            <button id="StartButton">Iniciar</button>
+        </div>
+    </div>
+
+    <div class="container1">
+        <h1 id="texttarea">Lista de Tareas</h1>
+        <input type="text" id="taskInput" placeholder="Agregar una nueva tarea">
+        <button class="butontarea" onclick="addTask()">Agregar Tarea</button>
+        <ul id="taskList"></ul>
+    </div>
+
+
+    <p id="cycleCountDisplay"></p>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
