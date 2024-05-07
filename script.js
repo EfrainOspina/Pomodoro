@@ -41,23 +41,26 @@ function startTimer() {
           time = 1 * 5; //DESCANSO
           isWorking = false;
           text.textContent = 'Descansa';
+          text.style.color = '#006600';
           playSound();
         } else {
           time = 1 * 10; //TRABAJO
           isWorking = true;
           text.textContent = '¡Enfocado!';
+          text.style.color = '#ff0000';
           playSound();
         }
         updateTimerDisplay();
         StartButton.textContent = 'Iniciar'; 
         
         // Si es el tercer ciclo, ajusta el tiempo
-        if (cycleCount === 1) {
-          time = 1 * 20; // Ajustar el tiempo a 7 minutos en el tercer ciclo
+        if (cycleCount === 7) {
+          time = 1 * 20; 
           cycleCount = 0; // Reiniciar el contador de ciclos
           text.textContent = 'Es hora del descanso largo'; 
-          text.style.fontSize = '1.5rem'; // Cambiar el tamaño del texto a 14px
-
+          text.style.fontSize = '1.5rem';
+          text.style.color = '#006600'; 
+ 
         
           updateTimerDisplay();
           playSound();
