@@ -1,6 +1,6 @@
 :root {
   --text-color: white;
-  --font-family: "Roboto";
+  --font-family: "Orbitron";
   --background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 }
 
@@ -13,13 +13,56 @@ body {
   background-image: var(--background-image);
   background-size: cover;
 }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  height: 40px;
+}
+
+a {
+  color: #fff; /* Cambia el color del texto del enlace según tu diseño */
+  text-decoration: none;
+  font-family: "Orbitron";
+  margin-left: 1300px;
+}
+
+a:hover {
+  text-decoration: underline; /* Cambia el estilo del subrayado al pasar el ratón sobre el enlace */
+}
+.icon-button {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%; /* Hacer el botón circular */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #090909b3;
+  border: 2px solid rgba(0, 0, 0, 0.67);
+  border-radius: 10px;
+  box-shadow: none;
+
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.713);
+}
+
+.icon-button:active {
+  box-shadow: none;
+  transform: translateY(4px);
+}
 
 #container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
-  min-width: 300px;
+  min-width: 400px;
   max-width: 350px;
   height: 280px;
   transition: all 0.3s ease;
@@ -27,9 +70,9 @@ body {
 }
 
 .name {
+  margin: 5px;
   text-align: center;
-  margin-top: 10px;
-  font-size: 4rem;
+  font-size: 3rem;
   font-family: "Orbitron";
   color: var(--text-color);
 }
@@ -47,17 +90,9 @@ p {
   font-weight: bold;
   text-align: center;
   padding: 12px 0;
+  margin: 0;
 }
 
-#cycleCountDisplay {
-  color: var(--text-color);
-  display: flex;
-  font-size: 1rem;
-  font-family: "Orbitron", monospace;
-  font-weight: bold;
-  justify-content: flex-end;
-  margin-right: 30px;
-}
 
 #text {
   color: #ff0000;
@@ -120,8 +155,8 @@ button:active {
   padding: 15px;
   backdrop-filter: blur(2px);
   border: 1px solid white;
-  height: 50%;
-  width: 20%;
+  height: 60%;
+  max-width: 40%;
 }
 
 input[type="text"] {
@@ -159,21 +194,6 @@ li:hover {
   font-size: 1rem;
 }
 
-.icon-button {
-  margin: auto;
-  margin-top: 50px;
-  height: 30px;
-  width: 30px;
-  border-radius: 50px; /* Hacer el botón circular */
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  position: relative;
-}
 .icon {
   animation: spin 5s infinite linear; /* Agregar animación al pasar el ratón */
 }
@@ -205,4 +225,15 @@ li:hover {
 }
 h2 {
   font-size: 1.2rem;
+}
+
+.cycle{
+    color: var(--text-color);
+    display: flex;
+    font-size: 1rem;
+    font-family: "Orbitron", monospace;
+    font-weight: bold;
+    position: fixed;
+    margin-left: 1400px;
+    margin-top: 250px;
 }

@@ -40,7 +40,6 @@ function startTimer() {
         if (isWorking) {
           time = 1 * 5; //DESCANSO
           isWorking = false;
-          text.textContent = 'Descansa';
           text.style.color = '#006600';
           playSound();
         } else {
@@ -53,12 +52,11 @@ function startTimer() {
         updateTimerDisplay();
         StartButton.textContent = 'Iniciar'; 
         
-        // Si es el tercer ciclo, ajusta el tiempo
         if (cycleCount === 7) {
           time = 1 * 20; 
-          cycleCount = 0; // Reiniciar el contador de ciclos
+          cycleCount = -1; // Reiniciar el contador de ciclos
           text.textContent = 'Es hora del descanso largo'; 
-          text.style.fontSize = '1.5rem';
+          text.style.fontSize = '1.2rem';
           text.style.color = '#006600'; 
  
         
@@ -90,7 +88,7 @@ updateCycleCountDisplay(); // Actualizar la visualización del ciclo actual
 
 function addTask() {
   let input = document.getElementById("taskInput").value.trim();
-  let maxLength = 60;
+  let maxLength = 30;
 
   if (input.length > maxLength) {
     input = input.substring(0, maxLength);
@@ -120,5 +118,17 @@ function addTask() {
   };
 }
 
+// Funcion del boton
+function toggleConfig() {
+  let configContainer = document.getElementById('configContainer');
+  configContainer.style.display = (configContainer.style.display === 'none') ? 'block' : 'none';
+}
+function closeConfig() {
+  let configContainer = document.getElementById('configContainer');
+  configContainer.style.display = 'none';
+  alert("Configuración guardada");
+}
 
-
+function saveConfig() {
+  closeConfig();
+}

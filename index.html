@@ -7,13 +7,19 @@
     <title>Pomodoro</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/7538/7538407.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link href='https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Enlace a Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Enlace a Font Awesome -->
 
 </head>
 
 <body>
+    <nav class="navbar">
+        <a href="/Funcionamiento/index.html">¿Como Funciona?</a>
+        <button class="icon-button" id="ConfigButton" onclick="toggleConfig()">
+            <span class="icon"><i class="fas fa-cog"></i></span>
+        </button>
+    </nav>
 
     <h1 class="name">Cronómetro Pomodoro</h1>
 
@@ -31,62 +37,22 @@
         <input type="number" id="workTime" value="1">
         <br>
         <label for="breakTime">Tiempo de pausa (Minutos):</label>
-        <input type="number" id="breakTime" value="1">
+        <input type="number" id="breakTime" value="5">
         <br>
         <button id="SaveConfigButton" onclick="saveConfig()">Guardar</button>
-        <button id="CloseConfigButton" onclick="closeConfig()">Cerrar</button>
     </div>
 
     <div class="container1">
         <h1 id="texttarea">Lista de Tareas</h1>
         <input type="text" id="taskInput" placeholder="Agregar una nueva tarea">
         <button class="butontarea" onclick="addTask()">Agregar Tarea </button>
-            <ul id="taskList"></ul>
+        <ul id="taskList"></ul>
     </div>
-    
-    
 
-        <button class="icon-button" class="tuerca" id="ConfigButton" onclick="openConfig()">
-            <span class="icon"><i class="fas fa-cog"></i></span> </button>
-
-   
-    <p id="cycleCountDisplay"></p>
+    <div class="cycle">
+        <p id="cycleCountDisplay"></p>
+    </div>
     <script src="script.js"></script>
-    <script>
-        function openConfig() {
-            document.getElementById("configContainer").style.display = "block";
-        }
-
-        function closeConfig() {
-            document.getElementById("configContainer").style.display = "none";
-        }
-
-        function saveConfig() {
-            let workTime = document.getElementById("workTime").value;
-            let breakTime = document.getElementById("breakTime").value;
-
-            localStorage.setItem("workTime", workTime);
-            localStorage.setItem("breakTime", breakTime);
-
-            closeConfig();
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            let workTime = localStorage.getItem("workTime");
-            let breakTime = localStorage.getItem("breakTime");
-
-            if (workTime) {
-                document.getElementById("workTime").value = workTime;
-            }
-
-            if (breakTime) {
-                document.getElementById("breakTime").value = breakTime;
-            }
-        });
-
-        document.getElementById("CloseConfigButton").addEventListener("click", closeConfig);
-    </script>
-
 </body>
 
 </html>

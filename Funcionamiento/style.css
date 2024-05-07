@@ -1,0 +1,71 @@
+:root {
+    --text-color: white;
+    --font-family: "Orbitron";
+    --background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  }
+
+body {
+    font-family:"Orbitron";
+    margin: 0;
+    padding: 0;
+    background-image: var(--background-image);
+    background-size: cover;
+}
+a {
+    color: #fff; 
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  
+  a:hover {
+    text-decoration: underline; 
+  }
+header {
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+    margin: 0;
+    font-size: 32px;
+    margin: auto;
+}
+
+.content {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+article {
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+footer {
+    color: #fff;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.7rem;
+}
