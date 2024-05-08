@@ -18,7 +18,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  height: 40px;
+  height: 50px;
 }
 
 a {
@@ -32,8 +32,8 @@ a:hover {
   text-decoration: underline; /* Cambia el estilo del subrayado al pasar el ratón sobre el enlace */
 }
 .icon-button {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%; /* Hacer el botón circular */
   cursor: pointer;
   display: flex;
@@ -44,7 +44,6 @@ a:hover {
   border: 2px solid rgba(0, 0, 0, 0.67);
   border-radius: 10px;
   box-shadow: none;
-
   cursor: pointer;
 }
 
@@ -67,6 +66,7 @@ a:hover {
   height: 280px;
   transition: all 0.3s ease;
   font-size: 1rem;
+  margin-top: 50px;
 }
 
 .name {
@@ -75,6 +75,7 @@ a:hover {
   font-size: 3rem;
   font-family: "Orbitron";
   color: var(--text-color);
+  margin-top: 40px;
 }
 
 h1,
@@ -235,5 +236,5 @@ h2 {
     font-weight: bold;
     position: fixed;
     margin-left: 1400px;
-    margin-top: 250px;
+    margin-top: 200px;
 }
