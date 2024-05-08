@@ -40,6 +40,7 @@ function startTimer() {
         if (isWorking) {
           time = 1 * 5; //DESCANSO
           isWorking = false;
+          text.textContent = '¡Descanso!';
           text.style.color = '#006600';
           playSound();
         } else {
