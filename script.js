@@ -35,7 +35,7 @@ const StartButton = document.getElementById('StartButton');
             isRunning = false;
             cycleCount++; // Incrementar el contador de ciclos
             updateCycleCountDisplay(); // Actualizar la visualización del ciclo actual
-            alert(isWorking ? "Tomate un descanso" : "Es tiempo de trabajar");//quitar esta linea si no soluciono la demora del sonido
+           // alert(isWorking ? "Tomate un descanso" : "Es tiempo de trabajar");//quitar esta linea si no soluciono la demora del sonido
             if (isWorking) {
               time = 1 * 5; //DESCANSO
               isWorking = false;
@@ -125,7 +125,6 @@ const StartButton = document.getElementById('StartButton');
     function closeConfig() {
       let configContainer = document.getElementById('configContainer');
       configContainer.style.display = 'none';
-      alert("Configuración guardada");
     }
 
     function saveConfig() {
