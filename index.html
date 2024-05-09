@@ -25,7 +25,9 @@
 
     <div id="container">
         <h1 id="text">¡Enfocado!</h1>
-        <div id="timer"></div>
+        <div class="timer_circle">
+            <div id="timer"></div>
+        </div>
         <div class="buttons">
             <button id="StartButton">Iniciar</button>
         </div>
@@ -34,7 +36,7 @@
     <div id="configContainer" style="display: none;">
         <h2>Configuración del cronómetro</h2>
         <label for="workTime">Tiempo de trabajo (Minutos):</label>
-        <input type="number" id="workTime" value="1">
+        <input type="number" id="workTime" value="10">
         <br>
         <label for="breakTime">Tiempo de pausa (Minutos):</label>
         <input type="number" id="breakTime" value="5">

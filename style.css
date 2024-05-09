@@ -13,6 +13,7 @@ body {
   background-image: var(--background-image);
   background-size: cover;
 }
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -22,19 +23,20 @@ body {
 }
 
 a {
-  color: #fff; /* Cambia el color del texto del enlace según tu diseño */
+  color: #fff;
   text-decoration: none;
   font-family: "Orbitron";
-  margin-left: 1300px;
+  margin-left: 1600px;
 }
 
 a:hover {
-  text-decoration: underline; /* Cambia el estilo del subrayado al pasar el ratón sobre el enlace */
+  text-decoration: underline;
 }
+
 .icon-button {
   height: 40px;
   width: 40px;
-  border-radius: 50%; /* Hacer el botón circular */
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -45,6 +47,7 @@ a:hover {
   border-radius: 10px;
   box-shadow: none;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .icon-button:hover {
@@ -55,20 +58,25 @@ a:hover {
   box-shadow: none;
   transform: translateY(4px);
 }
-.icon{
+
+.icon {
   font-size: 1.5rem;
 }
+
 #container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
   min-width: 400px;
-  max-width: 350px;
-  height: 280px;
+  max-width: 100%;
+  height: 30vh;
+  width: 50px;
   transition: all 0.3s ease;
   font-size: 1rem;
+  backdrop-filter: blur(2px);
   margin-top: 50px;
+  border-radius: 100px;
 }
 
 .name {
@@ -96,7 +104,6 @@ p {
   margin: 0;
 }
 
-
 #text {
   color: #ff0000;
 }
@@ -120,8 +127,10 @@ button {
   cursor: pointer;
 }
 
-.cycleCountDisplay {
+.cycle {
   color: var(--text-color);
+  display: flex;
+  justify-content: center;
 }
 
 .buttons {
@@ -198,19 +207,20 @@ li:hover {
 }
 
 .icon {
-  animation: spin 4s infinite linear; /* Agregar animación al pasar el ratón */
+  animation: spin 4s infinite linear;
 }
+
 @keyframes spin {
   0% {
-    transform: rotate(0deg); /* Comenzar sin rotación */
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg); /* Girar completamente */
+    transform: rotate(360deg);
   }
 }
 
 .icon-button:hover {
-  background-color: #f0f0f0; /* Cambiar color de fondo al pasar el ratón */
+  background-color: #f0f0f0;
 }
 
 #configContainer {
@@ -219,24 +229,29 @@ li:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 30%;
+  width: 20%;
   height: 10%;
   z-index: 1;
   border: 1px solid white;
   border-radius: 10px;
   backdrop-filter: blur(2px);
 }
+
 h2 {
   font-size: 1.2rem;
 }
 
-.cycle{
-    color: var(--text-color);
-    display: flex;
-    font-size: 1rem;
-    font-family: "Orbitron", monospace;
-    font-weight: bold;
-    position: fixed;
-    margin-left: 1400px;
-    margin-top: 200px;
+@media (max-width: 768px) {
+  #container {
+    margin-top: 10px;
+  }
+  #configContainer {
+    height: 10%;
+  }
+  .container1 {
+    max-width: 100%;
+  }
+}
+input {
+  text-align: center;
 }
