@@ -9,52 +9,54 @@
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/7538/7538407.png">
     <link href='https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Enlace a Font Awesome -->
-
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="/Funcionamiento/index.html">¿Como Funciona?</a>
-        <button class="icon-button" id="ConfigButton" onclick="toggleConfig()">
-            <span class="icon"><i class="fas fa-cog"></i></span>
-        </button>
-    </nav>
+    <main>
+        <header>
+            <nav class="navbar">
+                <a href="/Funcionamiento/index.html">¿Como Funciona?</a>
+                <button class="icon-button" id="ConfigButton" onclick="toggleConfig()">
+                    <span class="icon"><i class="fas fa-cog"></i></span>
+                </button>
+            </nav>
+        </header>
+        <section>
+            <h1 class="name">Cronómetro Pomodoro</h1>
+            <div id="container">
+                <h1 id="text">¡Enfocado!</h1>
+                <div class="timer_circle">
+                    <div id="timer"></div>
+                </div>
+                <div class="buttons">
+                    <button id="StartButton">Iniciar</button>
+                </div>
+                <div class="cycle">
+                    <p id="cycleCountDisplay"></p>
+                </div>
+            </div>
 
-    <h1 class="name">Cronómetro Pomodoro</h1>
-    <p>hahahahahahaahhahahahahaaa</p>
-    <div id="container">
-        <h1 id="text">¡Enfocado!</h1>
-        <div class="timer_circle">
-            <div id="timer"></div>
+        </section>
+        <section class="contentlista">
+            <div class="container1">
+                <h1 id="texttarea">Lista de Tareas</h1>
+                <input type="text" id="taskInput" placeholder="Agregar una nueva tarea">
+                <button class="butontarea" onclick="addTask()">Agregar Tarea </button>
+                <ul id="taskList"></ul>
+            </div>
+        </section>
+        <div id="configContainer" style="display: none;">
+            <h2>Configuración del cronómetro</h2>
+            <label for="workTime">Tiempo de trabajo (Minutos):</label>
+            <input type="number" id="workTime" value="10">
+            <br>
+            <label for="breakTime">Tiempo de pausa (Minutos):</label>
+            <input type="number" id="breakTime" value="5">
+            <br>
+            <button id="SaveConfigButton" onclick="saveConfig()">Guardar</button>
         </div>
-        <div class="buttons">
-            <button id="StartButton">Iniciar</button>
-        </div>
-    </div>
-
-    <div id="configContainer" style="display: none;">
-        <h2>Configuración del cronómetro</h2>
-        <label for="workTime">Tiempo de trabajo (Minutos):</label>
-        <input type="number" id="workTime" value="10">
-        <br>
-        <label for="breakTime">Tiempo de pausa (Minutos):</label>
-        <input type="number" id="breakTime" value="5">
-        <br>
-        <button id="SaveConfigButton" onclick="saveConfig()">Guardar</button>
-    </div>
-
-    <div class="container1">
-        <h1 id="texttarea">Lista de Tareas</h1>
-        <input type="text" id="taskInput" placeholder="Agregar una nueva tarea">
-        <button class="butontarea" onclick="addTask()">Agregar Tarea </button>
-        <ul id="taskList"></ul>
-    </div>
-
-    <div class="cycle">
-        <p id="cycleCountDisplay"></p>
-    </div>
-    <script src="script.js"></script>
+    </main>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 :root {
   --text-color: white;
   --font-family: "Orbitron";
-  --background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  --background-image: url(https://img.freepik.com/vector-gratis/lineas-negras-abstractas-fondo-geometrico_677411-2755.jpg?w=1380&t=st=1716674901~exp=1716675501~hmac=d3c52088c45c51ec24922017f67f9df8f26716c9e0b299cca08a6f0cb0fe6e46);
 }
 
 body {
@@ -16,60 +16,59 @@ a {
   text-decoration: none;
   margin-left: 20px;
 }
+main {
+  position: relative;
+  padding-bottom: 100px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 a:hover {
   text-decoration: underline;
 }
 header {
-  margin-top: 20px;
-  color: #fff;
-  text-align: center;
+  margin-top: 1%;
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  left: 0;
 }
 
 h1 {
-  margin: 0;
+  text-align: center;
+  color: #fff;
   font-size: 32px;
-  margin: auto;
-  margin-top: 60px;
-
+  margin-top: 40px;
 }
 
 .content {
-  max-width: 900px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: auto;
-  margin-top: 50px;
-}
-
-article {
-  margin-bottom: 30px;
+  margin: 10px auto auto auto;
 }
 
 h2 {
   color: #333;
   font-size: 24px;
-  margin-bottom: 10px;
 }
 
 p {
-  line-height: 1.6;
-}
-
-ul {
-  margin: 0;
-  padding-left: 20px;
+  line-height: 1.5;
 }
 
 footer {
-  position: fixed;
+  color: transparent;
   color: #fff;
   text-align: center;
-  bottom: 0;
   width: 100%;
   font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
 }

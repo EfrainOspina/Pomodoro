@@ -1,7 +1,7 @@
 :root {
   --text-color: white;
   --font-family: "Orbitron";
-  --background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  --background-image: url(https://img.freepik.com/vector-gratis/lineas-negras-abstractas-fondo-geometrico_677411-2755.jpg?w=1380&t=st=1716674901~exp=1716675501~hmac=d3c52088c45c51ec24922017f67f9df8f26716c9e0b299cca08a6f0cb0fe6e46);
 }
 
 body {
@@ -13,20 +13,28 @@ body {
   background-image: var(--background-image);
   background-size: cover;
 }
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
-  height: 50px;
+main {
+  position: relative;
 }
 
-a {
+header {
+  width: 100%;
+  height: auto;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.navbar a {
   color: #fff;
   text-decoration: none;
   font-family: "Orbitron";
-  margin-left: 1600px;
+  justify-content: space-around;
+  position: absolute;
+  right: 100px;
 }
 
 a:hover {
@@ -38,9 +46,6 @@ a:hover {
   width: 40px;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 0;
   background-color: #090909b3;
   border: 2px solid rgba(0, 0, 0, 0.67);
@@ -63,49 +68,52 @@ a:hover {
   font-size: 1.5rem;
 }
 
+/* Container principal */
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 #container {
+  background-color: rgba(255, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
-  min-width: 400px;
-  max-width: 100%;
-  height: 30vh;
-  width: 50px;
   transition: all 0.3s ease;
-  font-size: 1rem;
-  backdrop-filter: blur(2px);
-  margin-top: 50px;
-  border-radius: 100px;
+  padding: 10px 120px;
+  border: 2px solid rgba(0, 0, 0, 0.67);
+  border-radius: 5%;
+  box-shadow: 5px 5px 0px #0000006a;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .name {
-  margin: 5px;
-  text-align: center;
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-family: "Orbitron";
   color: var(--text-color);
-  margin-top: 40px;
+  margin-block-end: 0.5em;
 }
 
 h1,
 p {
   color: var(--text-color);
   font-family: "Orbitron";
+  text-align: center;
 }
 
 #timer {
-  min-width: 300px;
-  font-size: 5rem;
+  font-size: 6rem;
   font-family: "Orbitron", monospace;
   font-weight: bold;
   text-align: center;
-  padding: 12px 0;
-  margin: 0;
 }
 
 #text {
-  color: #ff0000;
+  font-size: 2rem;
+  color: var(--text-color);
 }
 
 button {
@@ -128,9 +136,13 @@ button {
 }
 
 .cycle {
+  position: absolute;
+  right: 50px;
+  bottom: 0;
   color: var(--text-color);
   display: flex;
   justify-content: center;
+  font-weight: bold;
 }
 
 .buttons {
@@ -151,24 +163,28 @@ button:active {
   transform: translateY(4px);
 }
 
+/* Container Tareas */
 #texttarea {
   font-size: 1rem;
   margin-right: 50px;
 }
-
+.contentlista {
+  display: flex;
+  width: 100%;
+}
 .container1 {
   display: flex;
   flex-direction: column;
-  position: fixed;
   align-items: center;
-  top: 140px;
-  left: 10px;
   border-radius: 10px;
   padding: 15px;
   backdrop-filter: blur(2px);
   border: 1px solid white;
-  height: 60%;
-  max-width: 40%;
+  height: auto;
+  position: absolute;
+  left: 1%;
+  top: 50%;
+  margin: auto;
 }
 
 input[type="text"] {
@@ -225,6 +241,7 @@ li:hover {
 
 #configContainer {
   display: flex;
+  flex-direction: column;
   margin: auto;
   justify-content: center;
   align-items: center;
@@ -235,10 +252,14 @@ li:hover {
   border: 1px solid white;
   border-radius: 10px;
   backdrop-filter: blur(2px);
+  margin-top: 2%;
 }
 
 h2 {
   font-size: 1.2rem;
+}
+input {
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -251,7 +272,4 @@ h2 {
   .container1 {
     max-width: 100%;
   }
-}
-input {
-  text-align: center;
 }
