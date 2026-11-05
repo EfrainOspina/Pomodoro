@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Variables (definir en Netlify > Site configuration > Environment variables, nunca en el repositorio):
+#   GHL_PRIVATE_TOKEN, GHL_LOCATION_ID, GHL_PIPELINE_ID, GHL_STAGE_ID  (o bien GHL_WEBHOOK_URL)
+#   ALLOWED_ORIGIN = https://www.abogadobrett.com
