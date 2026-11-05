@@ -12,6 +12,12 @@ export const esc = (s = '') =>
 /** Dato pendiente del propietario. En producción no se renderiza nada. */
 export const pending = (what) => (REVIEW ? `<span class="pending" title="Información pendiente del propietario">Pendiente: ${esc(what)}</span>` : '');
 
+/** Divide un texto (que puede contener <em>) en palabras animables. */
+export const split = (html) => {
+  let i = 0;
+  return html.replace(/(<[^>]+>)|([^<\s]+)/g, (m, tag, word) => (tag ? tag : `<span class="w"><span style="--wi:${i++}">${word}</span></span>`));
+};
+
 const fmtDate = (iso) =>
   new Date(iso + 'T12:00:00Z').toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
 
@@ -32,6 +38,7 @@ const navItems = [
 export const header = (current) => `
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site-header" data-header>
+  <span class="read-progress" aria-hidden="true"><span data-progress-bar></span></span>
   <div class="wrap site-header__inner">
     <a class="brand" href="/" aria-label="Abogado Brett, inicio">
       <span class="brand__mark" aria-hidden="true">JB</span>
@@ -119,22 +126,25 @@ export const breadcrumbs = (items) => `
 export const sectionHead = (kicker, title, text = '', cls = '') => `
 <div class="section-head ${cls}">
   ${kicker ? `<p class="kicker">${esc(kicker)}</p>` : ''}
-  <h2>${title}</h2>
-  ${text ? `<p class="section-head__text">${text}</p>` : ''}
+  <h2 data-split>${split(title)}</h2>
+  ${text ? `<p class="section-head__text" data-anim="up">${text}</p>` : ''}
 </div>`;
 
 export const serviceCard = (s, i) => `
-<a class="svc-card reveal" href="/${s.slug}/" style="--i:${i}" data-cta="card-${s.key}" data-service="${s.key}">
-  <span class="svc-card__ico">${icon[s.icon]}</span>
+<a class="svc-card reveal${i === 0 ? ' svc-card--feature' : ''}" href="/${s.slug}/" style="--i:${i}" data-cta="card-${s.key}" data-service="${s.key}" data-spot>
+  <span class="svc-card__top"><span class="svc-card__ico">${icon[s.icon]}</span><span class="svc-card__n">${String(i + 1).padStart(2, '0')}</span></span>
   <h3>${esc(s.name)}</h3>
   <p>${esc(s.card)}</p>
-  <span class="svc-card__more">Ver servicio ${icon.arrow}</span>
+  <span class="svc-card__more">Ver servicio <span class="svc-card__arrow">${icon.arrow}</span></span>
 </a>`;
 
 export const steps = (list) => `
-<ol class="steps">
-  ${list.map(([t, d], i) => `<li class="step reveal" style="--i:${i}"><span class="step__n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('')}
-</ol>`;
+<div class="timeline" data-timeline style="--n:${list.length}">
+  <span class="timeline__rail" aria-hidden="true"><span class="timeline__fill" data-timeline-fill></span></span>
+  <ol class="timeline__list">
+    ${list.map(([t, d], i) => `<li class="tl-step" data-step-i="${i}"><span class="tl-step__dot" aria-hidden="true"></span><span class="tl-step__n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('')}
+  </ol>
+</div>`;
 
 export const faq = (list, id = 'faq') => `
 <div class="faq" id="${id}">
@@ -147,6 +157,11 @@ export const postCard = (p) => `
   <h3><a href="${p.url}">${esc(p.title)}</a></h3>
   <span class="post-card__more" aria-hidden="true">Leer artículo ${icon.arrow}</span>
 </article>`;
+
+export const marquee = (items, cls = '') => {
+  const row = items.map((t) => `<span>${esc(t)}</span><i aria-hidden="true">✦</i>`).join('');
+  return `<div class="marquee ${cls}" aria-hidden="true"><div class="marquee__track"><div>${row}</div><div>${row}</div></div></div>`;
+};
 
 export const relatedPosts = (cats, n = 3) => posts.filter((p) => cats.includes(p.cat)).slice(0, n);
 
@@ -175,8 +190,9 @@ export const leadForm = (preset = '') => {
 
 export const ctaBand = (title, text, { service = '', wa = 'Hola Abogado Brett, quiero hacer una consulta.' } = {}) => `
 <section class="cta-band">
+  <span class="cta-band__rings" aria-hidden="true"><i></i><i></i><i></i></span>
   <div class="wrap cta-band__inner">
-    <div><h2>${title}</h2><p>${esc(text)}</p></div>
+    <div><h2 data-split>${split(title)}</h2><p>${esc(text)}</p></div>
     <div class="cta-band__actions">
       ${btn(service ? `/${serviceByKey[service].slug}/#evaluar` : '/contacto/', 'Evaluar mi caso', { variant: 'gold', id: 'band', service })}
       ${waBtn(wa, 'WhatsApp', { variant: 'ghost-light', service, location: 'band' })}
@@ -211,15 +227,17 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/cormorant-garamond-normal-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<script>(function(h){h.classList.add('js');setTimeout(function(){if(!window.__motion)h.classList.add('no-motion')},2500)})(document.documentElement)</script>
 <link rel="stylesheet" href="/assets/css/main.css?v=__V__">
 ${schema.map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join('\n')}
 <script>window.SITE=${JSON.stringify({ wa: site.whatsapp, email: site.email, leadEndpoint: site.config.leadEndpoint, gtm, waText })};</script>
 <script src="/assets/js/main.js?v=__V__" defer></script>
+<script src="/assets/js/motion.js?v=__V__" defer></script>
 </head>
 <body${REVIEW ? ' class="is-review"' : ''}>
 ${header(current)}
 <main id="contenido">
-${body}
+${body.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/, (m, a, inner) => `<h1${a} data-split>${split(inner)}</h1>`)}
 </main>
 ${footer()}
 ${floating(waText)}

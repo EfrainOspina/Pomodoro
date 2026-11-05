@@ -1,6 +1,6 @@
 import {
   layout, header, btn, waBtn, sectionHead, serviceCard, steps, faq, postCard, relatedPosts, leadForm, ctaBand,
-  breadcrumbs, pending, esc, icon, site, services, serviceByKey, posts, categories, waLink,
+  breadcrumbs, pending, esc, icon, split, marquee, site, services, serviceByKey, posts, categories, waLink,
   schemaPerson, schemaOrg, schemaBreadcrumb, schemaFaq, schemaService,
 } from './lib/components.mjs';
 import { testimonials } from './data/testimonials.mjs';
@@ -50,44 +50,50 @@ const homeFaq = [
 
 const home = () => {
   const body = `
-<section class="hero">
+<section class="hero" data-hero>
+  <div class="fx-bg" aria-hidden="true"><span class="aurora aurora--1"></span><span class="aurora aurora--2"></span><span class="fx-lines"></span><span class="grain"></span></div>
   <div class="wrap hero__inner">
     <div class="hero__copy">
-      <p class="kicker kicker--light">Ciudadanía italiana · Europa</p>
+      <p class="kicker kicker--light" data-anim="fade">Ciudadanía italiana · Europa</p>
       <h1>Tu ciudadanía italiana y tu vida en Europa, con un abogado que <em>ya hizo ese camino.</em></h1>
-      <p class="hero__lead">Soy Johan Brett, abogado ítalo-venezolano. Nieto de italiano, tramité mi propia ciudadanía y hoy vivo en Italia con mi familia. Te ayudo a saber si tu caso califica, elegir la vía correcta y avanzar sin errores.</p>
-      <div class="hero__actions">
-        ${btn('/contacto/', 'Evaluar mi caso', { variant: 'gold', id: 'hero-primary' })}
+      <p class="hero__lead" data-anim="up" style="--d:.75s">Soy Johan Brett, abogado ítalo-venezolano. Nieto de italiano, tramité mi propia ciudadanía y hoy vivo en Italia con mi familia. Te ayudo a saber si tu caso califica, elegir la vía correcta y avanzar sin errores.</p>
+      <div class="hero__actions" data-anim="up" style="--d:.9s">
+        ${btn('/contacto/', 'Evaluar mi caso', { variant: 'gold', id: 'hero-primary', cls: 'is-magnetic' })}
         ${btn('#servicios', 'Ver servicios', { variant: 'ghost-light', id: 'hero-secondary', iconName: '' })}
       </div>
-      <p class="hero__micro">${icon.check} Evaluación preliminar en línea · sin enviar documentos</p>
+      <p class="hero__micro" data-anim="fade" style="--d:1.1s">${icon.check} Evaluación preliminar en línea · sin enviar documentos</p>
     </div>
-    <div class="hero__media">
-      ${img('johan-brett', 'Johan Brett, abogado y asesor legal y migratorio', { eager: true, cls: 'hero__photo' })}
-      <div class="hero__badge"><strong>${esc(site.firm)}</strong><span>Equipo en Italia y Venezuela</span></div>
+    <div class="hero__media" data-anim="arch" data-tilt>
+      <svg class="arch-line" viewBox="0 0 440 560" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 558V220A218 218 0 0 1 438 220V558"/></svg>
+      <div class="arch">${img('johan-brett', 'Johan Brett, abogado y asesor legal y migratorio', { eager: true, cls: 'hero__photo' })}</div>
+      <div class="float-card float-card--a"><span class="float-card__dot"></span><span><strong>${esc(site.firm)}</strong><small>Equipo en Italia y Venezuela</small></span></div>
+      <div class="float-card float-card--b"><span class="float-card__route">VE <i></i> IT</span><span><strong>Lo vivió en primera persona</strong><small>Nieto de italiano, ciudadano reconocido</small></span></div>
     </div>
   </div>
+  <a class="scroll-cue" href="#servicios" aria-label="Ir a los servicios"><span></span></a>
 </section>
 
 <section class="facts" aria-label="Datos clave">
-  <ul class="wrap facts__list">
-    <li><strong>Ítalo-venezolano</strong><span>Doble ciudadanía, vive en Italia</span></li>
-    <li><strong>Lo vivió en primera persona</strong><span>Tramitó su ciudadanía como nieto de italiano</span></li>
-    <li><strong>Formado en Venezuela e Italia</strong><span>En actualización constante</span></li>
-    <li><strong>Red de aliados</strong><span>España, Alemania, Portugal y América</span></li>
+  <ul class="wrap facts__list" data-anim="facts">
+    <li style="--i:0"><strong>Ítalo-venezolano</strong><span>Doble ciudadanía, vive en Italia</span></li>
+    <li style="--i:1"><strong>Lo vivió en primera persona</strong><span>Tramitó su ciudadanía como nieto de italiano</span></li>
+    <li style="--i:2"><strong>Formado en Venezuela e Italia</strong><span>En actualización constante</span></li>
+    <li style="--i:3"><strong>Red de aliados</strong><span>España, Alemania, Portugal y América</span></li>
   </ul>
 </section>
 
+${marquee(['Ciudadanía por descendencia', 'Ciudadanía por matrimonio', 'Mentorías', 'Migrar a Europa', 'Emprender en Italia y España', 'Actas y apostillas'])}
+
 <section class="section" id="servicios">
   <div class="wrap">
-    ${sectionHead('¿Qué necesitas resolver?', 'Elige tu situación y te mostramos el camino', 'Cada servicio tiene su propia evaluación, con las preguntas que importan para tu caso.')}
-    <div class="svc-grid">
+    ${sectionHead('¿Qué necesitas resolver?', 'Elige tu situación y te mostramos <em>el camino</em>', 'Cada servicio tiene su propia evaluación, con las preguntas que importan para tu caso.')}
+    <div class="bento">
       ${services.map(serviceCard).join('')}
-      <a class="svc-card svc-card--alt reveal" href="/contacto/?servicio=otro" style="--i:5" data-cta="card-otro" data-service="otro">
-        <span class="svc-card__ico">${icon.compass}</span>
+      <a class="svc-card svc-card--alt reveal" href="/contacto/?servicio=otro" style="--i:5" data-cta="card-otro" data-service="otro" data-spot>
+        <span class="svc-card__top"><span class="svc-card__ico">${icon.compass}</span><span class="svc-card__n">?</span></span>
         <h3>No sé qué opción necesito</h3>
         <p>Cuéntanos tu situación en pocas líneas y te orientamos hacia el servicio adecuado.</p>
-        <span class="svc-card__more">Pedir orientación ${icon.arrow}</span>
+        <span class="svc-card__more">Pedir orientación <span class="svc-card__arrow">${icon.arrow}</span></span>
       </a>
     </div>
   </div>
@@ -95,14 +101,26 @@ const home = () => {
 
 <section class="section section--paper story">
   <div class="wrap story__inner">
-    <div class="story__media reveal">
-      ${img('johan-brett-familia', 'Johan Brett en Italia', { w: 514, h: 514 })}
+    <div class="story__media">
+      <div class="story__frame img-reveal" data-parallax="-0.06">${img('johan-brett-familia', 'Johan Brett en Italia', { w: 514, h: 514 })}</div>
+      <span class="story__stamp" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text><textPath href="#circ">ITALIA · VENEZUELA · EUROPA · AMÉRICA ·</textPath></text></svg><b>JB</b></span>
     </div>
     <div class="story__copy">
-      <p class="kicker">Por qué trabajar conmigo</p>
-      <h2>No te hablo desde la teoría. <em>Yo también lo viví.</em></h2>
-      <p>Nací fuera de Italia y soy nieto de italiano. Tramité mi ciudadanía, me mudé y hoy vivo en Italia junto a mi esposa y mis dos hijos. Conozco las dudas, los documentos que no aparecen y la incertidumbre de empezar de nuevo.</p>
-      <p>Estudié en Venezuela y en Italia, trabajé en el mundo corporativo con empresarios y líderes, y hoy acompaño desde Europa a familias y emprendedores que quieren dar el mismo paso, con un equipo de abogados, asesores y traductores oficiales.</p>
+      <p class="kicker" data-anim="fade">Por qué trabajar conmigo</p>
+      <h2 data-split>${split('No te hablo desde la teoría. <em>Yo también lo viví.</em>')}</h2>
+      <blockquote class="pull" data-anim="up"><p>Siendo nacido en el extranjero y nieto de italiano, tramité mi ciudadanía italiana. Me mudé y vivo en Italia junto a mis dos hijos y mi esposa.</p><cite>Johan Brett</cite></blockquote>
+      <p data-anim="up">Estudié en Venezuela y en Italia, trabajé en el mundo corporativo con empresarios y líderes, y hoy acompaño desde Europa a familias y emprendedores que quieren dar el mismo paso, con un equipo de abogados, asesores y traductores oficiales.</p>
+      <figure class="route" data-draw>
+        <svg viewBox="0 0 600 230" role="img" aria-label="Ruta de Venezuela a Italia">
+          <path class="route__base" d="M60 190C190 30 400 10 540 70"/>
+          <path class="route__line" pathLength="1" d="M60 190C190 30 400 10 540 70"/>
+          <circle class="route__pulse" cx="60" cy="190" r="7"/><circle class="route__pt" cx="60" cy="190" r="4.5"/>
+          <circle class="route__pulse route__pulse--b" cx="540" cy="70" r="7"/><circle class="route__pt route__pt--b" cx="540" cy="70" r="4.5"/>
+          <circle class="route__traveler" r="3.5"><animateMotion dur="2.4s" begin="indefinite" fill="freeze" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".6 0 .2 1" path="M60 190C190 30 400 10 540 70"/></circle>
+          <text x="60" y="222" text-anchor="middle">Venezuela</text><text x="540" y="40" text-anchor="middle">Italia</text>
+        </svg>
+        <figcaption>El mismo camino que hoy recorren muchas familias.</figcaption>
+      </figure>
       ${btn('/sobre-johan-brett/', 'Conocer a Johan', { variant: 'text', id: 'story-about' })}
     </div>
   </div>
@@ -110,21 +128,23 @@ const home = () => {
 
 <section class="section" id="metodo">
   <div class="wrap">
-    ${sectionHead('Cómo trabajamos', 'Un proceso claro, de la primera pregunta a la resolución', 'Sabrás en cada momento en qué etapa estás y qué viene después.')}
+    ${sectionHead('Cómo trabajamos', 'Un proceso claro, de la primera pregunta <em>a la resolución</em>', 'Sabrás en cada momento en qué etapa estás y qué viene después.')}
     ${steps(method)}
   </div>
 </section>
 
 <section class="section section--navy update">
+  <div class="fx-bg" aria-hidden="true"><span class="grain"></span></div>
+  <span class="bigtype" data-parallax-x="-0.18" aria-hidden="true">Ley 74/2025</span>
   <div class="wrap update__inner">
     <div>
-      <p class="kicker kicker--light">El marco legal cambió</p>
-      <h2>La reforma de 2025 cambió las reglas. La información de hace un año ya no sirve.</h2>
-      <p>La Ley 74/2025 modificó la ciudadanía por descendencia, y en 2026 la Corte Constitucional italiana y la justicia europea siguen revisando su alcance. Publicamos cada novedad en español, explicada para que sepas cómo te afecta.</p>
-      ${btn('/blog/', 'Ver análisis y guías', { variant: 'ghost-light', id: 'update-blog' })}
+      <p class="kicker kicker--light" data-anim="fade">El marco legal cambió</p>
+      <h2 data-split>${split('La reforma de 2025 cambió las reglas. <em>La información de hace un año ya no sirve.</em>')}</h2>
+      <p data-anim="up">La Ley 74/2025 modificó la ciudadanía por descendencia, y en 2026 la Corte Constitucional italiana y la justicia europea siguen revisando su alcance. Publicamos cada novedad en español, explicada para que sepas cómo te afecta.</p>
+      <div data-anim="up">${btn('/blog/', 'Ver análisis y guías', { variant: 'ghost-light', id: 'update-blog' })}</div>
     </div>
     <ul class="update__list">
-      ${posts.filter((p) => p.cat === 'actualidad').slice(0, 3).map((p) => `<li><a href="${p.url}"><time datetime="${p.date}">${new Date(p.date + 'T12:00:00Z').toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}</time><span>${esc(p.title)}</span>${icon.arrow}</a></li>`).join('')}
+      ${posts.filter((p) => p.cat === 'actualidad').slice(0, 3).map((p, i) => `<li class="reveal" style="--i:${i}"><a href="${p.url}"><time datetime="${p.date}">${new Date(p.date + 'T12:00:00Z').toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}</time><span>${esc(p.title)}</span>${icon.arrow}</a></li>`).join('')}
     </ul>
   </div>
 </section>
@@ -142,7 +162,7 @@ ${testimonialsSection()}
   <div class="wrap eval">
     <div class="eval__copy">
       <p class="kicker">Evaluación preliminar</p>
-      <h2>Empieza por saber dónde estás</h2>
+      <h2 data-split>${split('Empieza por saber <em>dónde estás</em>')}</h2>
       <p>Responde unas preguntas sobre tu situación. Revisamos tu caso y te indicamos los siguientes pasos. Toma unos 3 minutos.</p>
       <ul class="ticks">
         <li>${icon.check} Sin enviar documentos</li>
@@ -169,6 +189,7 @@ const servicePage = (s) => {
   const others = services.filter((o) => o.key !== s.key);
   const body = `
 <section class="page-hero">
+  <div class="fx-bg" aria-hidden="true"><span class="aurora aurora--1"></span><span class="aurora aurora--2"></span><span class="fx-lines"></span><span class="grain"></span></div>
   <div class="wrap">
     ${breadcrumbs([['/servicios/', 'Servicios'], [`/${s.slug}/`, s.short]])}
     <div class="page-hero__grid">
@@ -193,7 +214,7 @@ const servicePage = (s) => {
   <div class="wrap split">
     <div class="split__problem reveal">
       <p class="kicker">${esc(s.problem.title)}</p>
-      <p class="lede">${esc(s.problem.text)}</p>
+      <p class="lede" data-anim="up">${esc(s.problem.text)}</p>
     </div>
     <div>
       <p class="kicker">Cómo te ayudamos</p>
@@ -270,6 +291,7 @@ const servicesHub = () => layout({
   schema: [schemaBreadcrumb([['/servicios/', 'Servicios']])],
   body: `
 <section class="page-hero page-hero--compact">
+  <div class="fx-bg" aria-hidden="true"><span class="aurora aurora--1"></span><span class="aurora aurora--2"></span><span class="fx-lines"></span><span class="grain"></span></div>
   <div class="wrap">
     ${breadcrumbs([['/servicios/', 'Servicios']])}
     <h1>Servicios</h1>
@@ -307,6 +329,7 @@ const about = () => layout({
   schema: [schemaPerson(), schemaBreadcrumb([['/sobre-johan-brett/', 'Sobre Johan Brett']])],
   body: `
 <section class="page-hero page-hero--about">
+  <div class="fx-bg" aria-hidden="true"><span class="aurora aurora--1"></span><span class="aurora aurora--2"></span><span class="fx-lines"></span><span class="grain"></span></div>
   <div class="wrap">
     ${breadcrumbs([['/sobre-johan-brett/', 'Sobre Johan Brett']])}
     <div class="about-hero">
@@ -316,7 +339,7 @@ const about = () => layout({
         <p class="page-hero__lead">Abogado venezolano con doble ciudadanía ítalo-venezolana. Vive en Italia y acompaña a familias y emprendedores que quieren obtener su ciudadanía italiana, vivir o emprender en Europa.</p>
         ${pending('título profesional exacto, universidad, año y número de inscripción en el Colegio de Abogados')}
       </div>
-      ${img('johan-brett', 'Retrato de Johan Brett', { eager: true, cls: 'about-hero__photo' })}
+      <div class="arch arch--about" data-anim="arch">${img('johan-brett', 'Retrato de Johan Brett', { eager: true, cls: 'about-hero__photo' })}</div>
     </div>
   </div>
 </section>
@@ -379,6 +402,7 @@ const contact = () => layout({
   schema: [schemaBreadcrumb([['/contacto/', 'Contacto']]), schemaOrg()],
   body: `
 <section class="page-hero page-hero--compact">
+  <div class="fx-bg" aria-hidden="true"><span class="aurora aurora--1"></span><span class="aurora aurora--2"></span><span class="fx-lines"></span><span class="grain"></span></div>
   <div class="wrap">
     ${breadcrumbs([['/contacto/', 'Contacto']])}
     <h1>Cuéntanos tu caso</h1>
@@ -409,6 +433,7 @@ const blog = () => layout({
   schema: [schemaBreadcrumb([['/blog/', 'Recursos']])],
   body: `
 <section class="page-hero page-hero--compact">
+  <div class="fx-bg" aria-hidden="true"><span class="aurora aurora--1"></span><span class="aurora aurora--2"></span><span class="fx-lines"></span><span class="grain"></span></div>
   <div class="wrap">
     ${breadcrumbs([['/blog/', 'Recursos']])}
     <h1>Recursos y actualidad</h1>
@@ -438,6 +463,7 @@ const privacy = () => layout({
   noindex: true,
   body: `
 <section class="page-hero page-hero--compact">
+  <div class="fx-bg" aria-hidden="true"><span class="aurora aurora--1"></span><span class="aurora aurora--2"></span><span class="fx-lines"></span><span class="grain"></span></div>
   <div class="wrap">${breadcrumbs([['/privacidad/', 'Privacidad']])}<h1>Privacidad y cookies</h1></div>
 </section>
 <section class="section">
@@ -469,6 +495,7 @@ const notFound = () => layout({
   noindex: true,
   body: `
 <section class="page-hero page-hero--compact page-hero--404">
+  <div class="fx-bg" aria-hidden="true"><span class="aurora aurora--1"></span><span class="aurora aurora--2"></span><span class="fx-lines"></span><span class="grain"></span></div>
   <div class="wrap">
     <p class="kicker kicker--light">Error 404</p>
     <h1>Esta página no existe o cambió de dirección</h1>

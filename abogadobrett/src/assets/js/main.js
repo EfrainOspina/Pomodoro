@@ -121,13 +121,7 @@
   var ev = d.querySelector('[data-evaluar]');
   if (ev && d.getElementById('evaluar')) ev.setAttribute('href', '#evaluar');
 
-  // ===================== Animación de entrada =====================
-  if ('IntersectionObserver' in w) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    d.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-  } else d.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+  // La animación de entrada vive en motion.js
 
   // ===================== Filtros del blog =====================
   var posts = d.querySelector('[data-posts]');
